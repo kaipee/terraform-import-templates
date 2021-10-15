@@ -75,3 +75,16 @@ variable "pm_timeout" {
   type        = number
   default     = 300
 }
+
+variable "lxc_password" {
+  description = "LXC container root password"
+  type        = string
+  sensitive   = true
+  default     = "password"
+}
+
+variable "ssh_public_keys" {
+  description = "SSH public key"
+  type        = string
+  default     = ""
+}

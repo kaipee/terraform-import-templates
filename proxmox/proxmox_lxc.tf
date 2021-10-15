@@ -60,7 +60,7 @@ resource "proxmox_lxc" "name" {
 
   onboot     = false      # A boolean that determines if the container will start on boot. Default is false.
   ostype     = ""         # The operating system type, used by LXC to setup and configure the container. Automatically determined if not set.
-  password   = "password" # Sets the root password inside the container.
+  password   = var.lxc_password # Sets the root password inside the container.
   pool       = ""         # The name of the Proxmox resource pool to add this container to.
   protection = false      # A boolean that enables the protection flag on this container. Stops the container and its disk from being removed/updated. Default is false.
   restore    = false      # A boolean to mark the container creation/update as a restore task.
@@ -71,7 +71,7 @@ resource "proxmox_lxc" "name" {
   }
 
   searchdomain    = ""    # Sets the DNS search domains for the container. If neither nameserver nor searchdomain are specified, the values of the Proxmox host will be used by default.
-  ssh_public_keys = ""    # Multi-line string of SSH public keys that will be added to the container. Can be defined using Terraform's heredoc syntax.
+  ssh_public_keys = var.ssh_public_keys    # Multi-line string of SSH public keys that will be added to the container. Can be defined using Terraform's heredoc syntax.
   start           = false # A boolean that determines if the container is started after creation. Default is false.
   startup         = ""    # The startup and shutdown behaviour of the container.
   swap            = 512   # A number that sets the amount of swap memory available to the container. Default is 512.
