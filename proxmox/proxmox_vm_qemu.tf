@@ -1,8 +1,4 @@
-// Describe a QEMU resource to import.
-// Until a future terraform release provides automatic resource importing,
-// this information MUST be manually copied from the Proxmox instance.
-// Defaults have been included.
-resource "proxmox_vm_qemu" "some_qemu_resource_name" {
+resource "proxmox_vm_qemu" "name" {
 
   // REQUIRED
   name        = "" # (required) The name of the VM within Proxmox.

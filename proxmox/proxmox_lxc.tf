@@ -1,8 +1,4 @@
-// Describe an LXC resource to import.
-// Until a future terraform release provides automatic resource importing,
-// this information MUST be manually copied from the Proxmox instance.
-// Defaults have been included.
-resource "proxmox_lxc" "some_lxc_resource_name" {
+resource "proxmox_lxc" "name" {
 
   // REQUIRED
   target_node = "" # (required) A string containing the cluster node name.
