@@ -59,8 +59,8 @@ variable "pm_log_levels" {
   description = "A map of log sources and levels"
   type        = map(any)
   default = {
-    default    = "debug"
-    capturelog = ""
+    "default"    = "debug"
+    "capturelog" = ""
   }
 }
 

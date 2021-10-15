@@ -19,8 +19,8 @@ provider "proxmox" {
 
   pm_log_enable = var.pm_log_enable
   pm_log_levels = {
-    _default    = var.pm_log_levels.default
-    _capturelog = var.pm_log_levels.capturelog
+    _default    = "${var.pm_log_levels["default"]}"
+    _capturelog = "${var.pm_log_levels["capturelog"]}"
   }
   pm_log_file = var.pm_log_file
 
