@@ -18,7 +18,7 @@ provider "proxmox" {
   pm_parallel     = var.pm_parallel
 
   pm_log_enable = var.pm_log_enable
-  pm_log_levels = {
+  pm_log_levels {
     _default    = var.pm_log_levels.default
     _capturelog = var.pm_log_levels.capturelog
   }

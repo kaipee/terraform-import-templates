@@ -14,7 +14,7 @@ resource "proxmox_lxc" "name" {
   cpuunits    = 1024                     # A number of the CPU weight that the container possesses. Default is 1024.
   description = "Imported to terraform." # Sets the container description seen in the web interface.
 
-  features = {      # An object for allowing the container to access advanced features.
+  features {      # An object for allowing the container to access advanced features.
     fuse    = false # A boolean for enabling FUSE mounts.
     keyctl  = false # A boolean for enabling the keyctl() system call.
     mount   = ""    # Defines the filesystem types (separated by semi-colons) that are allowed to be mounted.
@@ -29,7 +29,7 @@ resource "proxmox_lxc" "name" {
   lock                 = ""                       # A string for locking or unlocking the VM.
   memory               = 1024                     # A number containing the amount of RAM to assign to the container (in MB).
 
-  mountpoint = {      # An object for defining a volume to use as a container mount point. Can be specified multiple times.
+  mountpoint {      # An object for defining a volume to use as a container mount point. Can be specified multiple times.
     mp        = ""    # (required) The path to the mount point as seen from inside the container. The path must not contain symlinks for security reasons.
     size      = ""    # (required) Size of the underlying volume. Must end in G, M, or K (e.g. "1G", "1024M", "1048576K"). Note that this is a read only value.
     slot      = ""    # (required) A string containing the number that identifies the mount point (i.e. the n in mp[n]).
@@ -44,7 +44,7 @@ resource "proxmox_lxc" "name" {
 
   nameserver = "" # The DNS server IP address used by the container. If neither nameserver nor searchdomain are specified, the values of the Proxmox host will be used by default.
 
-  network = {          # An object defining a network interface for the container. Can be specified multiple times.
+  network {          # An object defining a network interface for the container. Can be specified multiple times.
     name     = "eth0"  # (required) The name of the network interface as seen from inside the container (e.g. "eth0").
     bridge   = "vmbr0" # The bridge to attach the network interface to (e.g. "vmbr0").
     firewall = false   # A boolean to enable the firewall on the network interface.
@@ -65,7 +65,7 @@ resource "proxmox_lxc" "name" {
   protection = false      # A boolean that enables the protection flag on this container. Stops the container and its disk from being removed/updated. Default is false.
   restore    = false      # A boolean to mark the container creation/update as a restore task.
 
-  rootfs = {              # An object for configuring the root mount point of the container. Can only be specified once.
+  rootfs {              # An object for configuring the root mount point of the container. Can only be specified once.
     size    = ""          # (required) Size of the underlying volume. Must end in G, M, or K (e.g. "1G", "1024M", "1048576K"). Note that this is a read only value.
     storage = "local-lvm" # (required) A string containing the volume, directory, or device to be mounted into the container (at the path specified by mp). E.g. local-lvm, local-zfs, local etc.
   }

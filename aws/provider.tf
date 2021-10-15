@@ -13,7 +13,7 @@ provider "aws" {
   region     = "" # (Optional) This is the AWS region. It must be provided, but it can also be sourced from the AWS_DEFAULT_REGION environment variables, or via a shared credentials file if profile is specified.
   profile    = "" # (Optional) This is the AWS profile name as set in the shared credentials file.
 
-  assume_role = {            # (Optional) An assume_role block (documented below). Only one assume_role block may be in the configuration.
+  assume_role {            # (Optional) An assume_role block (documented below). Only one assume_role block may be in the configuration.
     duration_seconds    = "" # (Optional) Number of seconds to restrict the assume role session duration. You can provide a value from 900 seconds (15 minutes) up to the maximum session duration setting for the role.
     external_id         = "" # (Optional) External identifier to use when assuming the role.
     policy              = "" # (Optional) IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
@@ -26,7 +26,7 @@ provider "aws" {
 
   http_proxy = "" # (Optional) The address of an HTTP proxy to use when accessing the AWS API. Can also be configured using the HTTP_PROXY or HTTPS_PROXY environment variables.
 
-  endpoints = { # (Optional) Configuration block for customizing service endpoints.
+  endpoints { # (Optional) Configuration block for customizing service endpoints.
     accessanalyzer = "http://localhost:4566"
     acm = ""
     acmpca = ""
@@ -199,15 +199,15 @@ provider "aws" {
   allowed_account_ids     = 000000000000 # (Optional) List of allowed AWS account IDs to prevent you from mistakenly using an incorrect one (and potentially end up destroying a live environment). Conflicts with forbidden_account_ids.
   forbidden_account_ids   = 000000000000 # (Optional) List of forbidden AWS account IDs to prevent you from mistakenly using the wrong one (and potentially end up destroying a live environment). Conflicts with allowed_account_ids.
 
-  default_tags = { # (Optional) Configuration block with resource tag settings to apply across all resources handled by this provider (see the Terraform multiple provider instances documentation for more information about additional provider configurations). This is designed to replace redundant per-resource tags configurations. Provider tags can be overridden with new values, but not excluded from specific resources. To override provider tag values, use the tags argument within a resource to configure new tag values for matching keys. See the default_tags Configuration Block section below for example usage and available arguments. This functionality is supported in all resources that implement tags, with the exception of the aws_autoscaling_group resource.
-    tags = {
+  default_tags { # (Optional) Configuration block with resource tag settings to apply across all resources handled by this provider (see the Terraform multiple provider instances documentation for more information about additional provider configurations). This is designed to replace redundant per-resource tags configurations. Provider tags can be overridden with new values, but not excluded from specific resources. To override provider tag values, use the tags argument within a resource to configure new tag values for matching keys. See the default_tags Configuration Block section below for example usage and available arguments. This functionality is supported in all resources that implement tags, with the exception of the aws_autoscaling_group resource.
+    tags {
       Environment = "Test"
       Name        = "Provider Tag"
       Description = "Imported to terraform"
     }
   }
 
-  ignore_tags = { # (Optional) Configuration block with resource tag settings to ignore across all resources handled by this provider (except any individual service tag resources such as aws_ec2_tag) for situations where external systems are managing certain resource tags. Arguments to the configuration block are described below in the ignore_tags Configuration Block section. See the Terraform multiple provider instances documentation for more information about additional provider configurations.
+  ignore_tags { # (Optional) Configuration block with resource tag settings to ignore across all resources handled by this provider (except any individual service tag resources such as aws_ec2_tag) for situations where external systems are managing certain resource tags. Arguments to the configuration block are described below in the ignore_tags Configuration Block section. See the Terraform multiple provider instances documentation for more information about additional provider configurations.
     keys         = ["TagKey1"]
     key_prefixes = ["Key"]
   }
