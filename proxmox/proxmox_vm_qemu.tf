@@ -30,7 +30,7 @@ resource "proxmox_vm_qemu" "name" {
   pool                   = ""                 # The resource pool to which the VM will be added.
   tags                   = ""                 # Tags of the VM. This is only meta information.
   force_create           = true              # If false, and a vm of the same name, on the same node exists, terraform will attempt to reconfigure that VM with these settings. Set to true to always create a new VM (note, the name of the VM must still be unique, otherwise an error will be produced.)
-  clone_wait             = 120                 # Provider will wait clone_wait seconds after an UpdateConfig operation.
+  clone_wait             = 5                 # Provider will wait clone_wait seconds after an UpdateConfig operation.
   additional_wait        = 5                 # The amount of time in seconds to wait between creating the VM and powering it up.
   #preprovision                = true               # Whether to preprovision the VM. See Preprovision above for more info.
   os_type                     = "ubuntu" # Which provisioning method to use, based on the OS type. Options: ubuntu, centos, cloud-init.
@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "name" {
   #ssh_forward_ip              = ""                 # Only applies when define_connection_info is true. The IP (and optional colon separated port), to use to connect to the host for preprovisioning. If using cloud-init, this can be left blank.
   #ssh_user                    = ""                 # Only applies when define_connection_info is true. The user with which to connect to the guest for preprovisioning. Forces re-creation on change.
   #ssh_private_key             = ""                 # Only applies when define_connection_info is true. The private key to use when connecting to the guest for preprovisioning. Sensitive.
-  ci_wait                 = 30 # How to long in seconds to wait for before provisioning.
+  ci_wait                 = 5 # How to long in seconds to wait for before provisioning.
   ciuser                  = "terraform" # Override the default cloud-init user for provisioning.
   cipassword              = "${var.cipassword}" # Override the default cloud-init user's password. Sensitive.
   cicustom                = "" # Instead specifying ciuser, cipasword, etc… you can specify the path to a custom cloud-init config file here. Grants more flexibility in configuring cloud-init.
@@ -66,7 +66,7 @@ resource "proxmox_vm_qemu" "name" {
     tag       = -1    # The VLAN tag to apply to packets on this device. -1 disables VLAN tagging.
     firewall  = false # Whether to enable the Proxmox firewall on this network device.
     rate      = 0     # Network device rate limit in mbps (megabytes per second) as floating point number. Set to 0 to disable rate limiting.
-    queues    = 1     # Number of packet queues to be used on the device. Requires virtio model to have an effect.
+    queues    = 0     # Number of packet queues to be used on the device. Requires virtio model to have an effect.
     link_down = false # Whether this interface should be disconnected (like pulling the plug).
   }
 
@@ -79,7 +79,7 @@ resource "proxmox_vm_qemu" "name" {
     backup      = 1        # Whether the drive should be included when making backups.
     iothread    = 1        # Whether to use iothreads for this drive. Only effective with a disk of type virtio, or scsi when the the emulated controller type (scsihw top level block argument) is virtio-scsi-single.
     replicate   = 0        # Whether the drive should considered for replication jobs.
-    ssd         = 0        # Whether to expose this drive as an SSD, rather than a rotational hard disk.
+    ssd         = 1        # Whether to expose this drive as an SSD, rather than a rotational hard disk.
     discard     = "ignore" # Controls whether to pass discard/trim requests to the underlying storage. Only effective when the underlying storage supports thin provisioning. There are other caveots too, see the docs about disks for more info.
     mbps        = 0        # Maximum r/w speed in megabytes per second. 0 means unlimited.
     mbps_rd     = 0        # Maximum read speed in megabytes per second. 0 means unlimited.
