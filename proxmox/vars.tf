@@ -83,6 +83,13 @@ variable "lxc_password" {
   default     = "password"
 }
 
+variable "cipassword" {
+  description = "cloud-init password"
+  type        = string
+  sensitive   = true
+  default     = "password"
+}
+
 variable "ssh_public_keys" {
   description = "SSH public key"
   type        = string
