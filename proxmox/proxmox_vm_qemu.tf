@@ -47,7 +47,7 @@ resource "proxmox_vm_qemu" "name" {
   searchdomain            = "" # Sets default DNS search domain suffix.
   nameserver              = "" # Sets default DNS server for guest.
   sshkeys                 = "${var.ssh_public_keys}" # Newline delimited list of SSH public keys to add to authorized keys file for the cloud-init user.
-  ipconfig0               = "" # The first IP address to assign to the guest. Format: [gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,ip=<IPv4Format/CIDR>] [,ip6=<IPv6Format/CIDR>].
+  ipconfig0               = "ip=dhcp" # The first IP address to assign to the guest. Format: [gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,ip=<IPv4Format/CIDR>] [,ip6=<IPv6Format/CIDR>].
   ipconfig1               = "" # The second IP address to assign to the guest. Same format as ipconfig0.
   ipconfig2               = "" # The third IP address to assign to the guest. Same format as ipconfig0.
   ipconfig3               = "" # The fourth IP address to assign to the guest. Same format as ipconfig0.
