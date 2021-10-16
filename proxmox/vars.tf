@@ -92,6 +92,6 @@ variable "cipassword" {
 
 variable "ssh_public_keys" {
   description = "SSH public key"
-  type        = string
-  default     = ""
+  type        = list
+  default     = ["ssh-rsa <public_key>0", "ssh-rsa <public_key1>"]
 }

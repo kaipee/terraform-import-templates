@@ -33,7 +33,7 @@ resource "proxmox_vm_qemu" "name" {
   clone_wait             = 5                 # Provider will wait clone_wait seconds after an UpdateConfig operation.
   additional_wait        = 5                 # The amount of time in seconds to wait between creating the VM and powering it up.
   #preprovision                = true               # Whether to preprovision the VM. See Preprovision above for more info.
-  os_type                     = "ubuntu" # Which provisioning method to use, based on the OS type. Options: ubuntu, centos, cloud-init.
+  os_type                     = "cloud-init" # Which provisioning method to use, based on the OS type. Options: ubuntu, centos, cloud-init.
   force_recreate_on_change_of = "" # If the value of this string changes, the VM will be recreated. Useful for allowing this resource to be recreated when arbitrary attributes change. An example where this is useful is a cloudinit configuration (as the cicustom attribute points to a file not the content).
   #os_network_config           = ""                 # Only applies when define_connection_info is true. Network configuration to be copied into the VM when preprovisioning ubuntu or centos guests. The specified configuration is added to /etc/network/interfaces for Ubuntu, or /etc/sysconfig/network-scripts/ifcfg-eth0 for CentOS. Forces re-creation on change.
   #ssh_forward_ip              = ""                 # Only applies when define_connection_info is true. The IP (and optional colon separated port), to use to connect to the host for preprovisioning. If using cloud-init, this can be left blank.
@@ -46,7 +46,7 @@ resource "proxmox_vm_qemu" "name" {
   cloudinit_cdrom_storage = "" # Set the storage location for the cloud-init drive. Required when specifying cicustom.
   searchdomain            = "" # Sets default DNS search domain suffix.
   nameserver              = "" # Sets default DNS server for guest.
-  #sshkeys                 = "" # Newline delimited list of SSH public keys to add to authorized keys file for the cloud-init user.
+  sshkeys                 = "${var.ci_sshkeys}" # Newline delimited list of SSH public keys to add to authorized keys file for the cloud-init user.
   ipconfig0               = "" # The first IP address to assign to the guest. Format: [gw=<GatewayIPv4>] [,gw6=<GatewayIPv6>] [,ip=<IPv4Format/CIDR>] [,ip6=<IPv6Format/CIDR>].
   ipconfig1               = "" # The second IP address to assign to the guest. Same format as ipconfig0.
   ipconfig2               = "" # The third IP address to assign to the guest. Same format as ipconfig0.
