@@ -19,7 +19,7 @@ resource "proxmox_vm_qemu" "name" {
   hastate                = "ignored"                 # Requested HA state for the resource. One of "started", "stopped", "enabled", "disabled", or "ignored". See the docs about HA for more info.
   qemu_os                = "l26"              # The type of OS in the guest. Set properly to allow Proxmox to enable optimizations for the appropriate guest OS.
   memory                 = 512                # The amount of memory to allocate to the VM in Megabytes.
-  balloon                = 1                  # The minimum amount of memory to allocate to the VM in Megabytes, when Automatic Memory Allocation is desired. Proxmox will enable a balloon device on the guest to manage dynamic allocation. See the docs about memory for more info.
+  balloon                = 512                  # The minimum amount of memory to allocate to the VM in Megabytes, when Automatic Memory Allocation is desired. Proxmox will enable a balloon device on the guest to manage dynamic allocation. See the docs about memory for more info.
   sockets                = 1                  # The number of CPU sockets to allocate to the VM.
   cores                  = 1                  # The number of CPU cores per CPU socket to allocate to the VM.
   vcpus                  = 0                  # The number of vCPUs plugged into the VM when it starts. If 0, this is set automatically by Proxmox to sockets * cores.
